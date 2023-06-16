@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { ApiService } from '../services/ApiService';
-import { Jokes } from '../services/interfaces';
+import { Joke } from '../services/interfaces';
 import { catchErrorMessage } from '../utils/CatchErrorMessage';
 import { Link } from 'react-router-dom';
 import _debounce from 'lodash.debounce';
 
 const JokeSearch = () => {
-  const [results, setResults] = useState<Jokes[] | null>(null);
+  const [results, setResults] = useState<Joke[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const debounceOnSearch = _debounce(async (searchTerm: string) => {
@@ -39,7 +39,7 @@ const JokeSearch = () => {
         {Array.isArray(results) && results.length > 0 && (
           results.map((result) => (
             <li key={result.id}>
-              <Link to={`joke/${result.id}`}>{result.joke}</Link>
+              <Link to={`joke/${result.id}`} state={{ joke: result.joke }}>{result.joke}</Link>
             </li>
           ))
         )}

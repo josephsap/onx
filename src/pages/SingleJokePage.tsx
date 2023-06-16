@@ -1,6 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+import SingleJoke from '../components/SingleJoke';
+
 const SingleJokePage = () => {
+  const navigate = useNavigate();
+
   return (
-    <div>single joke page</div>
+    <>
+      <SingleJoke />
+      <button onClick={() => {navigate(-1)}}>Back</button>
+    </>
   )
 };
 

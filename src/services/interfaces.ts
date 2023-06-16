@@ -4,9 +4,10 @@ export interface RandomJokeData {
   status: number;
 }
 
-export interface Jokes {
+export interface Joke {
   id: string;
   joke: string;
+  status?: number;
 }
 
 export interface SearchResults {
@@ -14,7 +15,7 @@ export interface SearchResults {
   limit: number;
   next_page: number;
   previous_page: number;
-  results: Jokes[];
+  results: Joke[];
   search_term: string;
   status: number;
   total_jokes: number;

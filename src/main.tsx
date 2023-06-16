@@ -1,7 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import HomePage from './pages/HomePage.tsx'
-import SingleJokePage from './pages/SingleJokePage.tsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import HomePage from './pages/HomePage';
+import SingleJokePage from './pages/SingleJokePage';
+import RandomJokePage from './pages/RandomJokePage';
 import './index.css'
 import {
   createBrowserRouter,
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: 'joke/:jokeId',
     element: <SingleJokePage />,
+  },
+  {
+    path: 'random',
+    element: <RandomJokePage />,
   },
 ]);
 
