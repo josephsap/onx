@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import SingleJoke from '../components/SingleJoke';
+import Button from '@mui/material/Button';
 
 const SingleJokePage = () => {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ const SingleJokePage = () => {
   return (
     <>
       <SingleJoke />
-      <button onClick={() => {navigate(-1)}}>Back</button>
+      <Button variant="contained" onClick={() => {navigate(-1)}}>Back</Button>
     </>
   )
 };
