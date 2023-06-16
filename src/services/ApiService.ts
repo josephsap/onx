@@ -36,6 +36,7 @@ export class ApiService {
         headers,
       });
       const responseData: SearchResults = await response.json();
+      console.log(responseData, '****')
       // const jokesOnly: Jokes[] = responseData.results.map(joke => Pick(joke, 'id', 'joke')); 
       // type Jokes1 = Pick<SearchResults, 'results'> & {
       //   results: Array<Pick<SearchResults['results'][0], 'id' | 'joke'>>
