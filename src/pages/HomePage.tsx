@@ -1,32 +1,11 @@
-import { useState, useEffect } from 'react';
-import { ApiService } from '../services/ApiService';
-
-const catchErrorMessage = (error: unknown) => {
-  if (error instanceof Error) return error.message;
-  return String(error);
-};
-
+import RandomJoke from "../components/RandomJoke";
+import JokeSearch from "../components/JokeSearch";
 
 const HomePage = () => {
-  const [randomJoke, setRandomJoke] = useState<string>('');
-
-  useEffect(() => {
-    const fetchRandomJoke = async () => {
-      try {
-        const randomJokeData = await ApiService.getRandomJoke();
-        setRandomJoke(randomJokeData.joke);
-      } catch(error) {
-        catchErrorMessage(error);
-      }
-    };
-
-    fetchRandomJoke();
-  }, []);
-
-  console.log(randomJoke, 'jhiihi')
   return (
     <div>
-      {!randomJoke ? <div>loading</div> : <div>{randomJoke}</div>}
+      <JokeSearch />
+      {/* <RandomJoke /> */}
     </div>
   )
 }

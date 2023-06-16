@@ -1,9 +1,5 @@
-type RandomJokeData = {
-  id: string;
-  joke: string;
-  status: number;
-}
-
+import { RandomJokeData, SearchResults } from "./interfaces";
+ 
 const BASEURL = 'https://icanhazdadjoke.com/';
 
 // const catchErrorMessage = (error: unknown) => {
@@ -17,7 +13,7 @@ const headers: HeadersInit = new Headers({
 });
 
 export class ApiService {
-
+  // prepare answer for using static
   static async getRandomJoke(): Promise<RandomJokeData> {
     try {
       // type this later in the svc file
@@ -25,16 +21,40 @@ export class ApiService {
         method: 'GET',
         headers,
       });
-
-      if (!response) {
-        throw new Error('nooo');
-      }
-
       const jsonData = await response.json();
-      return jsonData.joke;
+      return jsonData;
     } catch(error) {
       console.log(error);
-      throw new Error("Something is Wrong!")
+      throw new Error('Error getting a random joke.');
     }
   }
+
+  static async searchForJoke(searchTerm: string): Promise<SearchResults> {
+    try {
+      const response = await fetch(`${BASEURL}search?term=${searchTerm}`, {
+        method: 'GET',
+        headers,
+      });
+      const responseData: SearchResults = await response.json();
+      // const jokesOnly: Jokes[] = responseData.results.map(joke => Pick(joke, 'id', 'joke')); 
+      // type Jokes1 = Pick<SearchResults, 'results'> & {
+      //   results: Array<Pick<SearchResults['results'][0], 'id' | 'joke'>>
+      // };
+      // const results2: Jokes1[] = responseData.results;
+     
+      // type Jokes1 = Pick<SearchResults, 'results'> & {
+      //   results: Array<Pick<SearchResults['results'], 'id' | 'joke'>>
+      // };
+      // type Jokes1 = Pick<Jokes, 'id' | 'joke'>
+      // type Jokes1 = Pick<SearchResults['results'], Jokes>;
+      // const jokes: Jokes1[] = responseData.results;
+      // const jokes: Jokes1[] = responseData.results;
+      // async login({ email, password }: Pick<Credentials, 'email' | 'password'>) {...}
+      return responseData;
+    } catch (error) {
+      console.log(error);
+      throw new Error('Error searching for a joke.');
+    }
+  }
+
 }
