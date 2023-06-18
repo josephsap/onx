@@ -1,10 +1,10 @@
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-// import { Link as RouterLink} from 'react-router-dom';
-// import Link from '@mui/material/Link';
-// import Button from '@mui/material/Button';
+import { Link as RouterLink } from 'react-router-dom';
+
 
 export default function ButtonAppBar() {
   return (
@@ -12,14 +12,14 @@ export default function ButtonAppBar() {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component='h1'>
-            Joe's Joke App
+            <Link style={{color: 'red'}} component={RouterLink} to='/'>Joke 😹 App</Link>
           </Typography>
           <Typography variant="h6">
-            Search
+            <Link style={{color: 'red'}} component={RouterLink} to='/random'>Random</Link>
           </Typography>
-          {/* <Typography variant="h6"> */}
-            {/* <Link component={RouterLink} to='/random'>Random</Link> */}
-          {/* </Typography> */}
+          <Typography variant="h6">
+            <Link style={{color: 'red'}} component={RouterLink} to='/'>Search</Link>
+          </Typography>
         </Toolbar>
       </AppBar>
     </Box>

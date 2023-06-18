@@ -1,6 +1,7 @@
+import React from 'react';
 import Container from '@mui/material/Container';
 import TopNav from './TopNav';
-import React from 'react';
+import Footer from './Footer';
 
 interface Props {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ const GlobalLayout: React.FC<Props>  = ({ children }) => {
     <Container maxWidth="lg">
       <TopNav />
       {children}
+      <Footer />
     </Container>
   );
 };
