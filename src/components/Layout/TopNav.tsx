@@ -1,27 +1,25 @@
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import { Toolbar, Typography, Container, Stack } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import { StyledTopNav, StyledNavItem } from './Layout.styles';
 
-
-export default function ButtonAppBar() {
+const TopNav = () => {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <StyledTopNav position="static">
+      <Container maxWidth="xl">
         <Toolbar>
-          <Typography variant="h6" component='h1'>
-            <Link style={{color: 'red'}} component={RouterLink} to='/'>Joke 😹 App</Link>
-          </Typography>
-          <Typography variant="h6">
-            <Link style={{color: 'red'}} component={RouterLink} to='/random'>Random</Link>
-          </Typography>
-          <Typography variant="h6">
-            <Link style={{color: 'red'}} component={RouterLink} to='/'>Search</Link>
-          </Typography>
+          <nav>
+            <Stack direction="row" alignItems="center" spacing={6}>
+              <Typography variant="h6" component='h1'>
+                <StyledNavItem component={RouterLink} underline="none" to='/'>Joke 😹 App</StyledNavItem>
+              </Typography>
+              <StyledNavItem component={RouterLink} underline="none" to='/random'>Random</StyledNavItem>
+              <StyledNavItem component={RouterLink} underline="none" to='/search'>Search</StyledNavItem>
+            </Stack>
+          </nav>
         </Toolbar>
-      </AppBar>
-    </Box>
+      </Container>
+    </StyledTopNav>
   );
 }
+
+export default TopNav;

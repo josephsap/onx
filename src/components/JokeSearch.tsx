@@ -4,14 +4,7 @@ import { Joke } from '../services/interfaces';
 import { catchErrorMessage } from '../utils/CatchErrorMessage';
 import { Link as RouterLink } from 'react-router-dom';
 import _debounce from 'lodash.debounce';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Typography from '@mui/material/Typography';
-// import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import { CircularProgress, InputAdornment, Link, Grid, OutlinedInput, List, ListItem, ListItemText, Typography } from '@mui/material';
 
 const JokeSearch = () => {
   const [results, setResults] = useState<Joke[] | null>(null);
@@ -42,27 +35,35 @@ const JokeSearch = () => {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <Typography variant="h3" component="h2">
+        <Typography variant="h4" component="h2" sx={{ mt: 6, mb: 2}}>
           Search for a joke
         </Typography>
       </Grid>
       <Grid item xs={12} sm={6}>
-        <TextField onChange={handleChange} fullWidth />
+        <OutlinedInput
+          onChange={handleChange}
+          fullWidth
+          sx={{ mb: 4 }}
+          endAdornment={
+            <InputAdornment position="end">
+              {loading ? <CircularProgress size={20} /> : null}
+            </InputAdornment>
+          }
+        />
       </Grid>
-      <Grid item xs={12} sm={8}>
-        {loading && <>loading stuff...</>}
+      <Grid item xs={12} sm={8} sx={{ mb: 4 }}>
         {Array.isArray(results) && results.length > 0 && (
           <List>
             {results.map((result) => (
               <ListItem key={result.id}>
-                <Link component={RouterLink} to={`joke/${result.id}`} state={{ joke: result.joke }}>
+                <Link underline="none" component={RouterLink} to={`joke/${result.id}`} state={{ joke: result.joke }}>
                   <ListItemText primary={result.joke} />
                 </Link>
               </ListItem>
             ))}
           </List>
         )}
-        {Array.isArray(results) && results.length === 0 && !loading ? <p>No results found for that search.</p> : null}    
+        {Array.isArray(results) && results.length === 0 && !loading ? <Typography>No results found for that search.</Typography> : null}    
       </Grid>
     </Grid>
   )

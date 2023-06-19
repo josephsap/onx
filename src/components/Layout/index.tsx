@@ -9,11 +9,13 @@ interface Props {
 
 const GlobalLayout: React.FC<Props>  = ({ children }) => {
   return (
-    <Container maxWidth="lg">
+    <>
       <TopNav />
-      {children}
+      <Container maxWidth="lg" style={{ flex: 1 }}>
+        {children}
+      </Container>
       <Footer />
-    </Container>
+    </>
   );
 };
 
