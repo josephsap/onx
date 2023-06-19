@@ -23,9 +23,9 @@ export class ApiService {
     }
   }
 
-  static async searchForJoke(searchTerm: string): Promise<SearchResults> {
+  static async searchForJoke(searchTerm: string, page?: number): Promise<SearchResults> {
     try {
-      const response = await fetch(`${BASEURL}search?term=${searchTerm}`, {
+      const response = await fetch(`${BASEURL}search?term=${searchTerm}&page=${page}`, {
         method: 'GET',
         headers,
       });
