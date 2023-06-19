@@ -44,7 +44,7 @@ const JokeSearch = () => {
     }
   };
 
-  const handlePaginationChange = (event: React.ChangeEvent<unknown>, value: number) => {
+  const handlePaginationChange = (_event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
     getJokes(value, searchTerm);
   };
