@@ -19,5 +19,5 @@ export interface SearchResults {
   search_term: string;
   status: number;
   total_jokes: number;
-  total_pages: 1;
+  total_pages: number;
 }
